@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANTHERGYM | Workout Clothes & Sports Supplements</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        corporate: {
+                            DEFAULT: '#005187',
+                            dark: '#003b62',
+                            light: '#1a6fa8',
+                            accent: '#4D82BC'
+                        },
+                        gymdark: '#111111',
+                        gymgray: '#f4f4f5',
+                        bordergray: '#e4e4e7'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #111111; }
+        .glow-blue { filter: drop-shadow(0px 0px 8px rgba(0, 81, 135, 0.6)); }
+        .mega-menu { transition: all 0.25s ease-in-out; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f4f4f5; }
+        ::-webkit-scrollbar-thumb { background: #005187; border-radius: 3px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-corporate selection:text-white">
+
+    <!-- Top Announcement Bar (Gymshark Style) -->
+    <div class="bg-gray-100 text-gymdark text-xs py-2 px-4 text-center font-medium border-b border-gray-200 flex justify-between items-center max-w-full">
+        <div class="hidden sm:block text-[11px] text-gray-500">Envíos a todo México</div>
+        <div class="mx-auto sm:mx-0 font-semibold text-xs">
+            ¿ERES NUEVO AQUÍ? <span class="underline cursor-pointer font-bold text-corporate" onclick="openNewsletterModal()">CONSIGUE UN 15% DE DESCUENTO EXTRA</span> | CÓDIGO: <span class="bg-black text-white px-1.5 py-0.5 rounded font-mono text-[10px]">PANTHER15</span>
+        </div>
+        <div class="hidden sm:flex items-center space-x-3 text-xs text-gray-600">
+            <span class="cursor-pointer hover:text-black"><i class="fa-solid fa-globe mr-1"></i> MXN $</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Left: Main Nav Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-extrabold uppercase tracking-tight">
+                <button onclick="setCategoryFilter('women')" class="hover:text-corporate py-5 transition border-b-2 border-transparent hover:border-corporate">Women</button>
+                <button onclick="setCategoryFilter('men')" class="hover:text-corporate py-5 transition border-b-2 border-transparent hover:border-corporate">Men</button>
+                <button onclick="setCategoryFilter('suplementos')" class="hover:text-corporate py-5 transition border-b-2 border-transparent hover:border-corporate">Suplementos</button>
+                <button onmouseenter="showMegaMenu()" onclick="toggleMegaMenu()" class="hover:text-corporate py-5 transition flex items-center space-x-1">
+                    <span>Explorar</span>
+                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+                <button onclick="switchTab('canvas')" class="text-xs bg-gray-100 text-gray-800 px-2.5 py-1 rounded hover:bg-corporate hover:text-white transition uppercase font-bold tracking-wider">Canvas</button>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-black p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+
+            <!-- Center: Brand Logo with Metallic Panther Silhouette & Blue Eye -->
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('inicio')">
+                <!-- SVG Panther Silhouette Logo with Metallic Contour and Blue Eye -->
+                <div class="w-10 h-10 flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="w-full h-full glow-blue" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Black Panther Silhouette Body with Chrome Outline -->
+                        <path d="M 15 65 C 20 40 45 20 80 30 C 85 40 82 50 75 55 C 85 58 80 72 70 70 C 65 75 55 78 50 90 C 45 80 35 75 25 72 Z" fill="#111111" stroke="#888888" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Jaw Outline & Saber Teeth Details -->
+                        <path d="M 75 55 Q 60 62 68 75 M 72 56 L 68 64 M 64 62 L 62 67" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                        <!-- Glowing Blue Eye Accent (#005187) -->
+                        <ellipse cx="68" cy="38" rx="6" ry="2.5" fill="#005187" transform="rotate(-15 68 38)" />
+                        <ellipse cx="68" cy="38" rx="2" ry="1" fill="#60A5FA" transform="rotate(-15 68 38)" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl sm:text-2xl font-black tracking-tighter text-black uppercase leading-none">PANTHER<span class="text-corporate">GYM</span></span>
+                    <span class="text-[8px] font-bold tracking-widest text-gray-500 uppercase">Be a Panther</span>
+                </div>
+            </div>
+
+            <!-- Right: Search, Account, Cart -->
+            <div class="flex items-center space-x-4">
+                <button onclick="showToast('Búsqueda activada...')" class="text-gray-800 hover:text-corporate p-1">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                <button onclick="switchTab('frecuentes')" class="text-gray-800 hover:text-corporate p-1 hidden sm:block" title="Mi Cuenta VIP">
+                    <i class="fa-solid fa-user text-lg"></i>
+                </button>
+                <button onclick="toggleCart()" class="relative text-black hover:text-corporate p-2 flex items-center">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-counter" class="absolute -top-1 -right-1 bg-corporate text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Gymshark-style Mega Dropdown Menu -->
+        <div id="mega-menu" onmouseleave="hideMegaMenu()" class="hidden absolute top-16 left-0 w-full bg-white border-b border-gray-200 shadow-xl z-50 py-8 px-6">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 text-xs">
+                <div class="space-y-3">
+                    <h4 class="font-extrabold uppercase text-black text-sm tracking-wider">Trending</h4>
+                    <ul class="space-y-2 text-gray-600 font-medium">
+                        <li onclick="setCategoryFilter('all'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">New Arrivals</li>
+                        <li onclick="setCategoryFilter('all'); hideMegaMenu();" class="hover:text-corporate cursor-pointer font-bold text-corporate">Best Sellers</li>
+                        <li onclick="setCategoryFilter('ropa'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Seamless Collection</li>
+                        <li onclick="setCategoryFilter('ropa'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Vengeance Fit</li>
+                        <li onclick="setCategoryFilter('suplementos'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">High Purity Supplements</li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-extrabold uppercase text-black text-sm tracking-wider">T-shirts & Tops</h4>
+                    <ul class="space-y-2 text-gray-600 font-medium">
+                        <li onclick="setCategoryFilter('men'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Oversized T-Shirts</li>
+                        <li onclick="setCategoryFilter('men'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Compression Nylon Shirts</li>
+                        <li onclick="setCategoryFilter('women'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Crop Tops & Tanks</li>
+                        <li onclick="setCategoryFilter('men'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Stringers & Hoodies</li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-extrabold uppercase text-black text-sm tracking-wider">Bottoms</h4>
+                    <ul class="space-y-2 text-gray-600 font-medium">
+                        <li onclick="setCategoryFilter('women'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Gym Leggings</li>
+                        <li onclick="setCategoryFilter('women'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Scrunch Bum Leggings</li>
+                        <li onclick="setCategoryFilter('men'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Flex Nylon Joggers</li>
+                        <li onclick="setCategoryFilter('men'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Shorts with Pockets</li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-extrabold uppercase text-black text-sm tracking-wider">Nutrición</h4>
+                    <ul class="space-y-2 text-gray-600 font-medium">
+                        <li onclick="setCategoryFilter('suplementos'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">100% Isolate Whey</li>
+                        <li onclick="setCategoryFilter('suplementos'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Creatina Monohidratada</li>
+                        <li onclick="setCategoryFilter('suplementos'); hideMegaMenu();" class="hover:text-corporate cursor-pointer">Pre-Entreno Panther Rage</li>
+                        <li onclick="switchTab('paquetes'); hideMegaMenu();" class="hover:text-corporate cursor-pointer font-bold">Combos Ahorro</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl space-y-3 border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-black text-white text-[9px] font-extrabold px-2 py-0.5 rounded uppercase">Featured</span>
+                        <h5 class="font-black uppercase text-sm mt-2 text-black">PANTHER LIFTING CLUB</h5>
+                        <p class="text-[11px] text-gray-500">Únete a la comunidad de alto rendimiento y viste con actitud.</p>
+                    </div>
+                    <button onclick="switchTab('paquetes'); hideMegaMenu();" class="w-full bg-black text-white py-2 text-xs font-bold uppercase hover:bg-corporate transition rounded">Explorar Combos</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 text-sm font-extrabold uppercase">
+            <button onclick="setCategoryFilter('women'); toggleMobileMenu();" class="block w-full text-left py-2 border-b border-gray-100">Women</button>
+            <button onclick="setCategoryFilter('men'); toggleMobileMenu();" class="block w-full text-left py-2 border-b border-gray-100">Men</button>
+            <button onclick="setCategoryFilter('suplementos'); toggleMobileMenu();" class="block w-full text-left py-2 border-b border-gray-100">Suplementos</button>
+            <button onclick="switchTab('paquetes'); toggleMobileMenu();" class="block w-full text-left py-2 border-b border-gray-100 text-corporate">Paquetes Combinados</button>
+            <button onclick="switchTab('frecuentes'); toggleMobileMenu();" class="block w-full text-left py-2 border-b border-gray-100">Clientes VIP</button>
+            <button onclick="switchTab('canvas'); toggleMobileMenu();" class="block w-full text-left py-2">Business Canvas</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow w-full">
+
+        <!-- TAB 1: INICIO (Gymshark Reference Design) -->
+        <section id="tab-inicio" class="tab-content">
+            
+            <!-- Hero Promo Strip (Gymshark Banner Style) -->
+            <div class="bg-black text-white py-16 px-4 text-center space-y-4">
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight max-w-4xl mx-auto leading-none">
+                    ¿ERES NUEVO AQUÍ? ¿QUIERES UN 15% DE DESCUENTO EXTRA?
+                </h1>
+                <p class="text-sm text-gray-300 font-medium">Suscríbete a nuestros correos para obtener un 15% de descuento en tu primera compra.</p>
+                <div class="pt-2">
+                    <button onclick="openNewsletterModal()" class="inline-block border-b-2 border-white text-white font-extrabold text-sm uppercase pb-1 tracking-wider hover:text-corporate hover:border-corporate transition">
+                        REGÍSTRATE AQUÍ
+                    </button>
+                </div>
+            </div>
+
+            <!-- "HOW DO YOU TRAIN?" Gender & Activity Selector Bar -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <h2 class="text-lg font-black uppercase tracking-tight text-black mb-4">¿CÓMO ENTRENAS?</h2>
+                <div class="flex space-x-3">
+                    <button onclick="setCategoryFilter('women'); switchTab('catalogo');" class="bg-white border-2 border-black text-black px-8 py-2.5 font-extrabold text-sm uppercase hover:bg-black hover:text-white transition">
+                        Women
+                    </button>
+                    <button onclick="setCategoryFilter('men'); switchTab('catalogo');" class="bg-white border border-gray-300 text-gray-500 px-8 py-2.5 font-extrabold text-sm uppercase hover:border-black hover:text-black transition">
+                        Men
+                    </button>
+                    <button onclick="setCategoryFilter('suplementos'); switchTab('catalogo');" class="bg-white border border-gray-300 text-gray-500 px-8 py-2.5 font-extrabold text-sm uppercase hover:border-black hover:text-black transition hidden sm:inline-block">
+                        Nutrición
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gymshark-style Product Category Cards Grid (4 Columns) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Card 1: Leggings Guide -->
+                    <div onclick="setCategoryFilter('women'); switchTab('catalogo');" class="group cursor-pointer space-y-3">
+                        <div class="aspect-[4/5] bg-gray-100 relative overflow-hidden rounded-lg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60"></div>
+                            <div class="w-full h-full bg-slate-900 flex flex-col items-center justify-center p-6 text-center text-white relative">
+                                <i class="fa-solid fa-person-running text-6xl text-gray-500 mb-4 group-hover:scale-110 transition duration-300"></i>
+                                <span class="bg-corporate text-white text-[10px] font-black px-2.5 py-1 uppercase rounded absolute top-4 left-4 z-20">Guía Guías</span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="font-extrabold text-base text-black uppercase group-hover:text-corporate transition">Leggings Guide</h3>
+                            <p class="text-xs text-gray-500 leading-snug">Deja de buscar; encuentra los leggings que siempre has querido. Compresión de nylon sin costuras.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Sports Bra Guide -->
+                    <div onclick="setCategoryFilter('women'); switchTab('catalogo');" class="group cursor-pointer space-y-3">
+                        <div class="aspect-[4/5] bg-gray-100 relative overflow-hidden rounded-lg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60"></div>
+                            <div class="w-full h-full bg-slate-800 flex flex-col items-center justify-center p-6 text-center text-white relative">
+                                <i class="fa-solid fa-shirt text-6xl text-gray-400 mb-4 group-hover:scale-110 transition duration-300"></i>
+                                <span class="bg-black text-white text-[10px] font-black px-2.5 py-1 uppercase rounded absolute top-4 left-4 z-20">Soporte Alto</span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="font-extrabold text-base text-black uppercase group-hover:text-corporate transition">Sports Bra Guide</h3>
+                            <p class="text-xs text-gray-500 leading-snug">Encuentra el soporte ideal para entrenamientos de impacto alto, medio o ligero con máxima ventilación.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Men's Shorts Guide -->
+                    <div onclick="setCategoryFilter('men'); switchTab('catalogo');" class="group cursor-pointer space-y-3">
+                        <div class="aspect-[4/5] bg-gray-100 relative overflow-hidden rounded-lg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60"></div>
+                            <div class="w-full h-full bg-zinc-900 flex flex-col items-center justify-center p-6 text-center text-white relative">
+                                <i class="fa-solid fa-dumbbell text-6xl text-gray-600 mb-4 group-hover:scale-110 transition duration-300"></i>
+                                <span class="bg-corporate text-white text-[10px] font-black px-2.5 py-1 uppercase rounded absolute top-4 left-4 z-20">Lifting Fit</span>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="font-extrabold text-base text-black uppercase group-hover:text-corporate transition">Men's Shorts Guide</h3>
+                            <p class="text-xs text-gray-500 leading-snug">Todo lo que necesitas saber sobre los mejores shorts de gimnasio, desde sesiones de fuerza hasta cardio.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Panther Lifting Club Promo -->
+                    <div onclick="switchTab('paquetes');" class="group cursor-pointer space-y-3">
+                        <div class="aspect-[4/5] bg-gradient-to-tr from-corporate-dark via-black to-corporate relative overflow-hidden rounded-lg flex flex-col justify-between p-6 text-white border border-corporate/30 shadow-lg">
+                            <div class="flex justify-between items-start">
+                                <span class="bg-white text-black text-[10px] font-black px-2.5 py-1 uppercase rounded">Comunidad</span>
+                                <i class="fa-solid fa-cat text-2xl text-corporate-light"></i>
+                            </div>
+                            <div class="space-y-2">
+                                <h3 class="text-2xl font-black uppercase leading-none tracking-tight">PANTHER LIFTING CLUB</h3>
+                                <p class="text-xs text-gray-300">Entrena sin límites con ropa técnica de nylon y suplementación de grado pro.</p>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="font-extrabold text-base text-black uppercase group-hover:text-corporate transition">Conoce el Club</h3>
+                            <p class="text-xs text-gray-500 leading-snug">Únete al movimiento. Descubre nuestros paquetes especiales combinados.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Featured Products Carousel / Grid Section -->
+            <div class="bg-gray-50 py-16 border-t border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <div class="flex justify-between items-end border-b border-gray-200 pb-4">
+                        <div>
+                            <span class="text-xs font-bold text-corporate uppercase tracking-widest">Lo Más Vendido</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-black uppercase tracking-tight">PRODUCTOS DESTACADOS</h2>
+                        </div>
+                        <button onclick="switchTab('catalogo')" class="text-xs font-extrabold uppercase text-black hover:text-corporate underline tracking-wider">Ver Todo</button>
+                    </div>
+
+                    <div id="featured-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Dynamically filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand Philosophy SEO Text Block (Gymshark Style) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-4">
+                <h2 class="text-xl sm:text-2xl font-black uppercase text-black tracking-tight">MÁS QUE TU MEJOR ROPA DE ENTRENAMIENTO</h2>
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-5xl">
+                    La comunidad de **PANTHERGYM** está dedicada a desbloquear el máximo potencial a través del acondicionamiento y la disciplina diaria. 
+                    Desde hoodies supersuaves y leggings de compresión de nylon hasta suplementos transparentes con formulación avanzada. 
+                    No está solo en los diseños de la indumentaria o en los ingredientes de nuestros batidos; está en las personas que los usan para superar sus propios límites día a día.
+                </p>
+                <p class="text-xs text-gray-500 italic">
+                    ¿Buscas más inspiración? Descubre consejos de entrenamiento y nutrición en **Panther Central** — tu próximo paso para alcanzar tu mejor versión.
+                </p>
+            </div>
+        </section>
+
+        <!-- TAB 2: CATALOGO (Ropa Deportiva & Suplementos) -->
+        <section id="tab-catalogo" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-200 pb-6">
+                <div>
+                    <h2 class="text-3xl font-black uppercase text-black tracking-tight">Catálogo PantherGym</h2>
+                    <p class="text-xs text-gray-500 font-medium">Explora la indumentaria deportiva de nylon de alto impacto y suplementos 100% transparentes.</p>
+                </div>
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="setCategoryFilter('all')" id="filter-all" class="filter-btn px-4 py-2 rounded text-xs font-extrabold uppercase bg-black text-white transition">Todos</button>
+                    <button onclick="setCategoryFilter('women')" id="filter-women" class="filter-btn px-4 py-2 rounded text-xs font-extrabold uppercase bg-gray-100 text-gray-700 hover:bg-black hover:text-white transition">Women</button>
+                    <button onclick="setCategoryFilter('men')" id="filter-men" class="filter-btn px-4 py-2 rounded text-xs font-extrabold uppercase bg-gray-100 text-gray-700 hover:bg-black hover:text-white transition">Men</button>
+                    <button onclick="setCategoryFilter('suplementos')" id="filter-suplementos" class="filter-btn px-4 py-2 rounded text-xs font-extrabold uppercase bg-gray-100 text-gray-700 hover:bg-black hover:text-white transition">Suplementos</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="catalog-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically rendered -->
+            </div>
+        </section>
+
+        <!-- TAB 3: PAQUETES COMBINADOS -->
+        <section id="tab-paquetes" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="bg-corporate/10 text-corporate text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Combos de Alto Rendimiento</span>
+                <h2 class="text-3xl sm:text-4xl font-black uppercase text-black">PAQUETES COMBINADOS</h2>
+                <p class="text-xs sm:text-sm text-gray-600">Combina indumentaria deportiva en nylon con suplementación de alta calidad y ahorra en tu compra.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Bundle 1 -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-black transition space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-black text-white text-[10px] font-black px-2.5 py-1 uppercase rounded">Más Popular</span>
+                            <span class="text-2xl font-black text-black">$1,450 <span class="text-xs text-gray-400 line-through font-normal">$1,850</span></span>
+                        </div>
+                        <h3 class="text-lg font-black uppercase text-black">Pack Definición Extrema</h3>
+                        <p class="text-xs text-gray-500">Diseñado para fases de corte muscular e intensidad máxima en el gimnasio.</p>
+                        <ul class="space-y-2 text-xs text-gray-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Camiseta Compression Nylon Pro</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Proteína Isolate 100% Transparent (2kg)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Shaker PantherGym Edición Limitada</li>
+                        </ul>
+                    </div>
+                    <button onclick="addBundleToCart('Pack Definición Extrema', 1450)" class="w-full bg-black hover:bg-corporate text-white py-3 rounded text-xs font-extrabold uppercase transition">
+                        Agregar Paquete
+                    </button>
+                </div>
+
+                <!-- Bundle 2 -->
+                <div class="bg-white border-2 border-corporate rounded-xl p-6 flex flex-col justify-between space-y-6 shadow-xl relative">
+                    <div class="absolute -top-3 right-6 bg-corporate text-white text-[9px] font-extrabold px-3 py-0.5 rounded uppercase">Recomendado Pro</div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-corporate/10 text-corporate text-[10px] font-black px-2.5 py-1 uppercase rounded">Pro Builder</span>
+                            <span class="text-2xl font-black text-black">$2,190 <span class="text-xs text-gray-400 line-through font-normal">$2,700</span></span>
+                        </div>
+                        <h3 class="text-lg font-black uppercase text-black">Pack Panther Pro Builder</h3>
+                        <p class="text-xs text-gray-500">El combo definitivo de hipertrofia muscular y outfit completo de entrenamiento.</p>
+                        <ul class="space-y-2 text-xs text-gray-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Conjunto Deportivo (Hoodie + Jogger Nylon)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Creatina Monohidratada Micronizada 500g</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Pre-Entreno Panther Rage (30 serv)</li>
+                        </ul>
+                    </div>
+                    <button onclick="addBundleToCart('Pack Panther Pro Builder', 2190)" class="w-full bg-corporate hover:bg-corporate-dark text-white py-3 rounded text-xs font-extrabold uppercase transition">
+                        Agregar Paquete Pro
+                    </button>
+                </div>
+
+                <!-- Bundle 3 -->
+                <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-black transition space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-black px-2.5 py-1 uppercase rounded">Pump & Focus</span>
+                            <span class="text-2xl font-black text-black">$980 <span class="text-xs text-gray-400 line-through font-normal">$1,200</span></span>
+                        </div>
+                        <h3 class="text-lg font-black uppercase text-black">Pack Focus & Pump</h3>
+                        <p class="text-xs text-gray-500">Enfoque mental láser y bombeo vascular extremo en cada serie pesada.</p>
+                        <ul class="space-y-2 text-xs text-gray-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Playera Oversize Nylon Breathable</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Pre-Entreno Panther Rage Blue Edition</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-corporate mr-2"></i> Straps de Agarre PantherGrip</li>
+                        </ul>
+                    </div>
+                    <button onclick="addBundleToCart('Pack Focus & Pump', 980)" class="w-full bg-black hover:bg-corporate text-white py-3 rounded text-xs font-extrabold uppercase transition">
+                        Agregar Paquete
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: CLIENTES FRECUENTES (Loyalty Program) -->
+        <section id="tab-frecuentes" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+            <div class="bg-gray-900 text-white rounded-2xl p-8 sm:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-4 max-w-xl">
+                    <span class="bg-corporate text-white text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Club VIP Panther</span>
+                    <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight">PROGRAMA DE CLIENTES FRECUENTES</h2>
+                    <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                        Acumula puntos en cada pedido de ropa deportiva y suplementación. Recibe beneficios exclusivos, preventas privadas y hasta un 15% de descuento permanente.
+                    </p>
+                </div>
+                <div class="w-full md:w-80 bg-white text-black p-6 rounded-xl space-y-4">
+                    <h3 class="text-base font-black uppercase text-center">Registro VIP</h3>
+                    <input type="text" id="vip-name" placeholder="Nombre Completo" class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-xs focus:outline-none focus:border-black">
+                    <input type="email" id="vip-email" placeholder="Correo Electrónico" class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-xs focus:outline-none focus:border-black">
+                    <button onclick="registerVIP()" class="w-full bg-black text-white py-2.5 text-xs font-extrabold uppercase hover:bg-corporate transition rounded">Unirme al Club VIP</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: BUSINESS MODEL CANVAS SUMMARY -->
+        <section id="tab-canvas" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+            <div class="border-b border-gray-200 pb-4 flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-black uppercase text-black">Business Model Canvas</h2>
+                    <p class="text-xs text-gray-500">Resumen corporativo de PantherGym.</p>
+                </div>
+                <button onclick="switchTab('inicio')" class="bg-black text-white px-4 py-2 rounded text-xs font-bold uppercase">Volver al Inicio</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 border border-gray-200 p-6 rounded-xl space-y-2">
+                    <span class="text-corporate font-bold text-xs uppercase">Socios Clave</span>
+                    <h4 class="font-bold text-sm text-black uppercase">Proveedores & Paquetería</h4>
+                    <p class="text-xs text-gray-600">Fabricantes de ropa deportiva, distribuidores de suplementos, paqueterías nacionales y plataformas de pago.</p>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 p-6 rounded-xl space-y-2">
+                    <span class="text-corporate font-bold text-xs uppercase">Propuesta de Valor</span>
+                    <h4 class="font-bold text-sm text-black uppercase">Indumentaria & Nutrición</h4>
+                    <p class="text-xs text-gray-600">Ropa de nylon moderna, transpirable e insumos deportivos transparentes de máxima calidad.</p>
+                </div>
+                <div class="bg-gray-50 border border-gray-200 p-6 rounded-xl space-y-2">
+                    <span class="text-corporate font-bold text-xs uppercase">Canales</span>
+                    <h4 class="font-bold text-sm text-black uppercase">Distribución Omnicanal</h4>
+                    <p class="text-xs text-gray-600">Tienda física, E-commerce oficial, redes sociales (Instagram, TikTok) y WhatsApp Business.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full p-6 sm:p-8 relative space-y-6 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-500 hover:text-black text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content" class="space-y-4">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Discount Modal -->
+    <div id="newsletter-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-md w-full p-8 text-center space-y-4 relative">
+            <button onclick="closeNewsletterModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <i class="fa-solid fa-envelope-open-text text-4xl text-corporate"></i>
+            <h3 class="text-2xl font-black uppercase text-black">CONSIGUE UN 15% OFF</h3>
+            <p class="text-xs text-gray-600">Suscríbete a nuestra lista VIP para obtener tu código exclusivo de descuento en tu primera orden.</p>
+            <input type="email" id="modal-email-input" placeholder="Tu correo electrónico" class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-xs focus:outline-none">
+            <button onclick="submitNewsletter()" class="w-full bg-black text-white py-3 text-xs font-extrabold uppercase hover:bg-corporate transition rounded">
+                Obtener Mi 15% Descuento
+            </button>
+        </div>
+    </div>
+
+    <!-- Gymshark-Style Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden justify-end">
+        <div class="bg-white w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl relative">
+            <div class="space-y-6 overflow-y-auto flex-grow">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-4">
+                    <h3 class="text-lg font-black uppercase text-black flex items-center">
+                        <i class="fa-solid fa-bag-shopping text-corporate mr-2"></i> Tu Carrito PantherGym
+                    </h3>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-black">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Free Shipping Progress Bar -->
+                <div class="bg-gray-100 p-3 rounded space-y-1">
+                    <div class="flex justify-between text-[11px] font-extrabold uppercase">
+                        <span>Envío Gratis</span>
+                        <span id="shipping-progress-text">Agrega más productos</span>
+                    </div>
+                    <div class="w-full bg-gray-300 h-1.5 rounded-full overflow-hidden">
+                        <div id="shipping-bar" class="bg-corporate h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div id="cart-items-container" class="space-y-4">
+                    <!-- Cart items rendered here -->
+                </div>
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="border-t border-gray-200 pt-4 space-y-3">
+                <div class="flex justify-between items-center text-lg font-black uppercase text-black">
+                    <span>Total:</span>
+                    <span id="cart-total-price" class="text-corporate">$0.00 MXN</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="checkoutWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded text-xs font-extrabold uppercase transition flex items-center justify-center space-x-1">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>WhatsApp</span>
+                    </button>
+                    <button onclick="checkoutSimulated()" class="bg-black hover:bg-corporate text-white py-3 rounded text-xs font-extrabold uppercase transition flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-credit-card text-xs"></i>
+                        <span>Pagar Ahora</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gymshark Reference Multi-Column Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-20 text-gray-700 text-xs">
+        <!-- Top Footer Grid: Help, Account, Pages, About -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+            
+            <div class="space-y-3">
+                <h4 class="font-black uppercase text-black text-sm tracking-wider">Help</h4>
+                <ul class="space-y-2 font-medium text-gray-600">
+                    <li><a href="#" class="hover:text-black">FAQ</a></li>
+                    <li><a href="#" class="hover:text-black">Track Your Order</a></li>
+                    <li><a href="#" class="hover:text-black">Delivery Information</a></li>
+                    <li><a href="#" class="hover:text-black">Returns Policy</a></li>
+                    <li><a href="#" class="hover:text-black">Make A Return</a></li>
+                    <li><a href="#" class="hover:text-black">Orders</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-black uppercase text-black text-sm tracking-wider">My Account</h4>
+                <ul class="space-y-2 font-medium text-gray-600">
+                    <li><a href="#" onclick="switchTab('frecuentes')" class="hover:text-black">Login</a></li>
+                    <li><a href="#" onclick="switchTab('frecuentes')" class="hover:text-black">Register VIP</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-black uppercase text-black text-sm tracking-wider">Pages</h4>
+                <ul class="space-y-2 font-medium text-gray-600">
+                    <li><a href="#" onclick="switchTab('catalogo')" class="hover:text-black">Stores</a></li>
+                    <li><a href="#" onclick="switchTab('frecuentes')" class="hover:text-black">Refer a Friend</a></li>
+                    <li><a href="#" onclick="switchTab('inicio')" class="hover:text-black">Panther Central</a></li>
+                    <li><a href="#" onclick="switchTab('frecuentes')" class="hover:text-black">Panther Loyalty</a></li>
+                    <li><a href="#" onclick="switchTab('canvas')" class="hover:text-black">About Us & Canvas</a></li>
+                    <li><a href="#" class="hover:text-black">Sustainability</a></li>
+                </ul>
+            </div>
+
+            <!-- Featured Footer Promo Card (Gymshark-style 3 Cards Block) -->
+            <div class="lg:col-span-2 space-y-4">
+                <h4 class="font-black uppercase text-black text-sm tracking-wider">More About PantherGym</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-gray-50 border border-gray-200 p-4 rounded text-center space-y-2 flex flex-col justify-between">
+                        <div class="font-black uppercase text-xs">PANTHER CENTRAL</div>
+                        <span class="text-[10px] text-gray-500 font-bold block">Blog & Fitness</span>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 p-4 rounded text-center space-y-2 flex flex-col justify-between">
+                        <i class="fa-solid fa-percent text-lg text-corporate"></i>
+                        <span class="text-[10px] text-gray-700 font-bold block">Descuento Estudiantes 12% OFF</span>
+                    </div>
+                    <div onclick="openNewsletterModal()" class="bg-gray-50 border border-gray-200 p-4 rounded text-center space-y-2 flex flex-col justify-between cursor-pointer hover:border-black">
+                        <i class="fa-solid fa-envelope text-lg text-black"></i>
+                        <span class="text-[10px] text-gray-700 font-bold block">Email Sign Up</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Payment Icons & Copyright Bottom Bar -->
+        <div class="border-t border-gray-200 py-6 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <!-- Payment Badges -->
+                <div class="flex items-center space-x-2 text-xl text-gray-600">
+                    <i class="fa-brands fa-cc-visa text-blue-900" title="Visa"></i>
+                    <i class="fa-brands fa-cc-mastercard text-red-600" title="Mastercard"></i>
+                    <i class="fa-brands fa-cc-paypal text-blue-700" title="PayPal"></i>
+                    <i class="fa-brands fa-cc-apple-pay text-black" title="Apple Pay"></i>
+                    <span class="text-[10px] font-extrabold bg-pink-100 text-pink-700 px-1.5 py-0.5 rounded">klarna.</span>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-[11px] text-gray-500 font-medium text-center md:text-left">
+                    © 2026 PANTHERGYM Limited | All Rights Reserved. | We Do Gym.
+                </div>
+
+                <!-- Social Links & Country -->
+                <div class="flex items-center space-x-4 text-sm text-gray-700">
+                    <a href="#" class="hover:text-corporate"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-corporate"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="hover:text-corporate"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-corporate"><i class="fa-brands fa-youtube"></i></a>
+                    <span class="text-xs font-bold border-l border-gray-300 pl-3">🇲🇽 MX | ESP</span>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-black text-white px-5 py-3 rounded shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 font-bold text-xs flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-corporate"></i>
+        <span id="toast-msg">¡Producto agregado al carrito!</span>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Compression Nylon Shirt",
+                category: "men",
+                type: "ropa",
+                price: 549,
+                rating: 4.9,
+                desc: "Camiseta de compresión ligera confeccionada con hilo de nylon de alta transpirabilidad y costuras planas anti-rozaduras.",
+                sizes: ["S", "M", "L", "XL"],
+                icon: "fa-shirt",
+                tag: "Best Seller"
+            },
+            {
+                id: 2,
+                name: "High Waist Seamless Leggings",
+                category: "women",
+                type: "ropa",
+                price: 890,
+                rating: 5.0,
+                desc: "Leggings de compresión alta en tejido sin costuras de nylon. Pretina anatómica que moldea sin restringir tu movimiento.",
+                sizes: ["XS", "S", "M", "L"],
+                icon: "fa-person-running",
+                tag: "Trending"
+            },
+            {
+                id: 3,
+                name: "Oversized Lifting Hoodie",
+                category: "men",
+                type: "ropa",
+                price: 980,
+                rating: 4.8,
+                desc: "Sudadera holgada de corte gym oversize con la pantera minimalista estampada y detalles técnicos.",
+                sizes: ["M", "L", "XL"],
+                icon: "fa-vest",
+                tag: "Edición Limitada"
+            },
+            {
+                id: 4,
+                name: "Sports Bra Support Max",
+                category: "women",
+                type: "ropa",
+                price: 620,
+                rating: 4.9,
+                desc: "Top deportivo con copas removibles, espalda cruzada y banda elástica de alto soporte para entrenamiento de impacto.",
+                sizes: ["S", "M", "L"],
+                icon: "fa-shirt",
+                tag: "Top Rated"
+            },
+            {
+                id: 5,
+                name: "Proteína Isolate 100% Transparent (2kg)",
+                category: "suplementos",
+                type: "suplementos",
+                price: 1290,
+                rating: 5.0,
+                desc: "Aislado de suero de leche de máxima pureza. 28g de proteína por servicio, cero azúcares y transparencia garantizada.",
+                sizes: ["2 kg (60 serv)"],
+                icon: "fa-jar",
+                tag: "Pureza Certificada"
+            },
+            {
+                id: 6,
+                name: "Creatina Monohidratada 500g",
+                category: "suplementos",
+                type: "suplementos",
+                price: 650,
+                rating: 4.9,
+                desc: "Creatina monohidratada micronizada ultra fina de rápida absorción para potencia y fuerza muscular.",
+                sizes: ["500g (100 serv)"],
+                icon: "fa-bolt",
+                tag: "Fuerza Pro"
+            }
+        ];
+
+        let cart = [];
+        let currentCategory = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeaturedProducts();
+            renderCatalogProducts();
+            updateCartUI();
+        });
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setCategoryFilter(category) {
+            currentCategory = category;
+            switchTab('catalogo');
+            
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-black', 'text-white');
+                b.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            const activeBtn = document.getElementById(`filter-${category}`);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+                activeBtn.classList.add('bg-black', 'text-white');
+            }
+            renderCatalogProducts();
+        }
+
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featured-products-grid');
+            container.innerHTML = '';
+            products.slice(0, 4).forEach(product => {
+                container.appendChild(createProductCard(product));
+            });
+        }
+
+        function renderCatalogProducts() {
+            const container = document.getElementById('catalog-products-grid');
+            container.innerHTML = '';
+
+            const filtered = currentCategory === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentCategory || p.type === currentCategory);
+
+            filtered.forEach(product => {
+                container.appendChild(createProductCard(product));
+            });
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = "group space-y-3 cursor-pointer";
+            card.innerHTML = `
+                <div onclick="openProductModal(${product.id})" class="aspect-[4/5] bg-gray-100 rounded relative overflow-hidden flex items-center justify-center border border-gray-200 group-hover:border-black transition">
+                    <span class="absolute top-3 left-3 bg-black text-white text-[9px] font-black uppercase px-2 py-0.5 rounded">${product.tag}</span>
+                    <i class="fa-solid ${product.icon} text-5xl text-gray-400 group-hover:scale-110 group-hover:text-corporate transition duration-300"></i>
+                    <button onclick="event.stopPropagation(); openProductModal(${product.id});" class="absolute bottom-3 left-3 right-3 bg-white hover:bg-black hover:text-white text-black font-extrabold text-xs uppercase py-2.5 rounded opacity-0 group-hover:opacity-100 transition shadow">
+                        Vista Rápida
+                    </button>
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-400 uppercase font-semibold text-[10px]">${product.category}</span>
+                        <span class="text-amber-500 font-bold"><i class="fa-solid fa-star text-[10px] mr-1"></i>${product.rating}</span>
+                    </div>
+                    <h4 onclick="openProductModal(${product.id})" class="font-extrabold text-sm text-black uppercase group-hover:text-corporate transition leading-tight">${product.name}</h4>
+                    <span class="text-sm font-black text-black block">$${product.price} MXN</span>
+                </div>
+            `;
+            return card;
+        }
+
+        // Product Modal Logic
+        function openProductModal(id) {
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="flex items-center space-x-4 border-b border-gray-200 pb-4">
+                    <div class="w-16 h-16 bg-gray-100 rounded flex items-center justify-center text-corporate text-2xl">
+                        <i class="fa-solid ${product.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="bg-black text-white text-[9px] font-black px-2 py-0.5 rounded uppercase">${product.tag}</span>
+                        <h3 class="text-xl font-black uppercase text-black mt-1">${product.name}</h3>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-600 leading-relaxed">${product.desc}</p>
+                <div class="space-y-2">
+                    <label class="text-xs font-extrabold uppercase text-gray-500">Talla / Presentación:</label>
+                    <div class="flex flex-wrap gap-2">
+                        ${product.sizes.map((s, idx) => `
+                            <button onclick="selectSize('${s}')" class="modal-size-btn px-4 py-2 text-xs font-extrabold uppercase border ${idx === 0 ? 'bg-black text-white border-black' : 'bg-white text-gray-800 border-gray-300'} rounded transition">${s}</button>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <span class="text-2xl font-black text-black">$${product.price} <span class="text-xs text-gray-500 font-normal">MXN</span></span>
+                    <button onclick="addToCartFromModal(${product.id})" class="bg-corporate hover:bg-corporate-dark text-white px-6 py-3 rounded text-xs font-extrabold uppercase transition">
+                        Agregar al Carrito
+                    </button>
+                </div>
+            `;
+            window.selectedSize = product.sizes[0];
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.getElementById('product-modal').classList.add('flex');
+        }
+
+        function selectSize(size) {
+            window.selectedSize = size;
+            document.querySelectorAll('.modal-size-btn').forEach(btn => {
+                if(btn.innerText === size) {
+                    btn.classList.add('bg-black', 'text-white', 'border-black');
+                    btn.classList.remove('bg-white', 'text-gray-800', 'border-gray-300');
+                } else {
+                    btn.classList.remove('bg-black', 'text-white', 'border-black');
+                    btn.classList.add('bg-white', 'text-gray-800', 'border-gray-300');
+                }
+            });
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.remove('flex');
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        // Cart Management
+        function addToCartFromModal(id) {
+            const product = products.find(p => p.id === id);
+            const size = window.selectedSize || product.sizes[0];
+            
+            const existing = cart.find(i => i.id === id && i.size === size);
+            if(existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: product.id, name: product.name, price: product.price, size: size, qty: 1, icon: product.icon });
+            }
+            updateCartUI();
+            closeProductModal();
+            showToast(`¡${product.name} agregado al carrito!`);
+        }
+
+        function addBundleToCart(name, price) {
+            cart.push({ id: 'bundle-' + Date.now(), name: name, price: price, size: 'Bundle Pro', qty: 1, icon: 'fa-box-open' });
+            updateCartUI();
+            showToast(`¡${name} agregado al carrito!`);
+        }
+
+        function updateCartUI() {
+            const counter = document.getElementById('cart-counter');
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            const bar = document.getElementById('shipping-bar');
+            const shipText = document.getElementById('shipping-progress-text');
+
+            const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+            counter.innerText = totalItems;
+
+            let total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            totalPriceEl.innerText = `$${total.toLocaleString()} MXN`;
+
+            // Free shipping calculation threshold ($1,200 MXN)
+            const threshold = 1200;
+            const progress = Math.min((total / threshold) * 100, 100);
+            bar.style.width = `${progress}%`;
+            if(total >= threshold) {
+                shipText.innerText = "¡Envío Gratis Desbloqueado!";
+            } else {
+                shipText.innerText = `Faltan $${(threshold - total).toLocaleString()} para Envío Gratis`;
+            }
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-2">
+                        <i class="fa-solid fa-bag-shopping text-4xl text-gray-300"></i>
+                        <p class="text-xs text-gray-500 uppercase font-bold">Tu carrito está vacío</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            cart.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between border-b border-gray-100 pb-3 text-xs";
+                div.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gray-100 rounded flex items-center justify-center text-corporate">
+                            <i class="fa-solid ${item.icon}"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-black uppercase leading-tight">${item.name}</h5>
+                            <span class="text-gray-400">Talla: ${item.size}</span>
+                            <span class="block font-black text-black mt-0.5">$${item.price} MXN</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="updateQty(${index}, -1)" class="w-6 h-6 border border-gray-300 rounded text-black font-bold hover:bg-gray-100">-</button>
+                        <span class="font-bold">${item.qty}</span>
+                        <button onclick="updateQty(${index}, 1)" class="w-6 h-6 border border-gray-300 rounded text-black font-bold hover:bg-gray-100">+</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateQty(index, delta) {
+            cart[index].qty += delta;
+            if(cart[index].qty <= 0) cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            drawer.classList.toggle('flex');
+        }
+
+        function toggleMegaMenu() {
+            const menu = document.getElementById('mega-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showMegaMenu() {
+            document.getElementById('mega-menu').classList.remove('hidden');
+        }
+
+        function hideMegaMenu() {
+            document.getElementById('mega-menu').classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function openNewsletterModal() {
+            document.getElementById('newsletter-modal').classList.remove('hidden');
+            document.getElementById('newsletter-modal').classList.add('flex');
+        }
+
+        function closeNewsletterModal() {
+            document.getElementById('newsletter-modal').classList.remove('flex');
+            document.getElementById('newsletter-modal').classList.add('hidden');
+        }
+
+        function submitNewsletter() {
+            const email = document.getElementById('modal-email-input').value;
+            if(!email) {
+                showToast("Ingresa tu correo electrónico.");
+                return;
+            }
+            closeNewsletterModal();
+            showToast("¡Código PANTHER15 aplicado a tu correo!");
+        }
+
+        function checkoutWhatsApp() {
+            if(cart.length === 0) return showToast("Tu carrito está vacío.");
+            let text = "Hola *PANTHERGYM*, solicito el pedido:\n\n";
+            cart.forEach(i => text += `• ${i.qty}x ${i.name} (${i.size}) - $${i.price * i.qty} MXN\n`);
+            text += `\n*Total:* $${cart.reduce((s, i) => s + (i.price * i.qty), 0)} MXN`;
+            window.open(`https://wa.me/5216670000000?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function checkoutSimulated() {
+            if(cart.length === 0) return showToast("Tu carrito está vacío.");
+            showToast("Procesando pago seguro...");
+            setTimeout(() => {
+                cart = [];
+                updateCartUI();
+                toggleCart();
+                showToast("¡Compra completada con éxito!");
+            }, 1800);
+        }
+
+        function registerVIP() {
+            const name = document.getElementById('vip-name').value;
+            if(!name) return showToast("Ingresa tu nombre.");
+            showToast(`¡Bienvenido al Club VIP, ${name}!`);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-32', 'opacity-0'), 3000);
+        }
+    </script>
+</body>
+</html>
